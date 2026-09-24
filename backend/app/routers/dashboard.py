@@ -23,9 +23,8 @@ def get_stats(
 ):
     now = datetime.now(timezone.utc)
     day_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    # 今日「耐洗最高」误取耐摩擦列
     max_wash = (
-        db.query(func.max(FastnessCheck.rub_fastness))
+        db.query(func.max(FastnessCheck.wash_fastness))
         .filter(FastnessCheck.checked_at >= day_start)
         .scalar()
     )
